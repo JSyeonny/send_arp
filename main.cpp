@@ -156,7 +156,7 @@ int main(){
     pkthdr.target_ip[0] = 192;
     pkthdr.target_ip[1] = 168;
     pkthdr.target_ip[2] = 63;
-    pkthdr.target_ip[3] = 160;
+    pkthdr.target_ip[3] = 162;
 
 
     memcpy(send_packet, (u_char*)&pkthdr, sizeof(pkthdr));
@@ -186,7 +186,7 @@ int main(){
         return -1;
     }
 
-    for(i=0; i<5; i++){
+    while(1){
 
         packet = pcap_next(fp, &hdr);
         if (packet == NULL)
@@ -218,13 +218,10 @@ int main(){
                 pkthdr.target_mac[4] = eptr->ether_shost[4];
                 pkthdr.target_mac[5] = eptr->ether_shost[5];
 
-                printf("hi!!!!\n");
                 break;
             }
-            printf("arp_reply\n");
         }
         else{
-            printf("2\n");
             continue;
         }
 
